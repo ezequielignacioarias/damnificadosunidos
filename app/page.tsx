@@ -722,15 +722,24 @@ export default function Home() {
     inputMode="numeric"
     pattern="[0-9]*"
     required 
-    value={form.cantidad} 
-    onFocus={(e) => e.target.select()}
+    value={form.cantidad === 1 ? '' : form.cantidad}
+    placeholder="1"
+    onFocus={(e) => {
+      // Al hacer foco, si vale 1, limpiamos visualmente para que no moleste
+      e.target.value = '';
+    }}
     onChange={e => {
       const val = e.target.value.replace(/\D/g, '');
       if (val === '') {
         setForm({ ...form, cantidad: 1 });
       } else {
         const num = parseInt(val, 10);
-        handleCantidadChange(num > 10 ? 10 : num);
+        handleCantidadChange(num > 5 ? 5 : num);
+      }
+    }}
+    onBlur={(e) => {
+      if (e.target.value === '' || !form.cantidad) {
+        handleCantidadChange(1);
       }
     }}
     className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-sky-400 transition-colors" 
