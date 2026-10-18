@@ -16,8 +16,8 @@ const ratelimit = new Ratelimit({
   prefix: '@upstash/ratelimit',
 });
 
-const supabaseUrl = 'https://anequmcpprmvrdattagm.supabase.co';
-const supabaseAnonKey = 'sb_publishable_cFIwIj4aD2AH21485elTrA_8DjUX-R1';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export async function POST(request: Request) {

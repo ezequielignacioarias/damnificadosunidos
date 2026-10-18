@@ -715,30 +715,31 @@ export default function Home() {
                 </div>
               )}
 
-              <div>
-                <label className="block text-xs text-slate-300 mb-1.5 font-medium">Cantidad de Unidades / Lotes a Registrar</label>
-                <input 
-                  type="number" 
-                  min="1" 
-                  max="10" 
-                  required 
-                  value={form.cantidad} 
-                  onChange={e => {
-                    const val = e.target.value;
-                    if (val === '') {
-                      setForm({ ...form, cantidad: 1 });
-                    } else {
-                      handleCantidadChange(parseInt(val, 10));
-                    }
-                  }}
-                  onBlur={() => {
-                    if (!form.cantidad || Number(form.cantidad) < 1) {
-                      handleCantidadChange(1);
-                    }
-                  }}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-sky-400 transition-colors" 
-                />
-              </div>
+<div>
+  <label className="block text-xs text-slate-300 mb-1.5 font-medium">Cantidad de Unidades / Lotes a Registrar</label>
+  <input 
+    type="number" 
+    min="1" 
+    max="5" 
+    required 
+    value={form.cantidad} 
+    onFocus={(e) => e.target.select()} // Selecciona el texto al tocarlo para que al escribir se reemplace directamente
+    onChange={e => {
+      const val = e.target.value;
+      if (val === '') {
+        setForm({ ...form, cantidad: 1 });
+      } else {
+        handleCantidadChange(parseInt(val, 10));
+      }
+    }}
+    onBlur={() => {
+      if (!form.cantidad || Number(form.cantidad) < 1) {
+        handleCantidadChange(1);
+      }
+    }}
+    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-sky-400 transition-colors" 
+  />
+</div>
             </div>
 
             <div className="border-t border-slate-800/80 pt-5 mt-3">
