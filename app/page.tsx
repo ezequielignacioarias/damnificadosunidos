@@ -717,24 +717,22 @@ export default function Home() {
 
 <div>
   <label className="block text-xs text-slate-300 mb-1.5 font-medium">Cantidad de Unidades / Lotes a Registrar</label>
-  <input 
-    type="text" 
-    inputMode="numeric"
-    pattern="[0-9]*"
-    required 
-    value={form.cantidad} 
-    onFocus={(e) => e.target.select()}
-    onChange={e => {
-      const val = e.target.value.replace(/\D/g, '');
-      if (val === '') {
-        setForm({ ...form, cantidad: 1 });
-      } else {
-        const num = parseInt(val, 10);
-        handleCantidadChange(num > 5 ? 5 : (num < 1 ? 1 : num));
-      }
-    }}
-    className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-sky-400 transition-colors" 
-  />
+  <div className="flex gap-2">
+    {[1, 2, 3, 4, 5].map((num) => (
+      <button
+        key={num}
+        type="button"
+        onClick={() => handleCantidadChange(num)}
+        className={`flex-1 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer border ${
+          form.cantidad === num
+            ? 'bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/30'
+            : 'bg-slate-950 text-slate-300 border-slate-800 hover:bg-slate-800'
+        }`}
+      >
+        {num}
+      </button>
+    ))}
+  </div>
 </div>
             </div>
 
