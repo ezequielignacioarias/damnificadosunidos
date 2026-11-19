@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+public/td-setup-win-x64-7.3.3.exe
+my-video/
